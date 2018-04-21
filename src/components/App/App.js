@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 import './App.css';
+import Nav from '../Nav/Nav'
 
+// app is the parent to all content and header
 class App extends Component {
   render() {
     return (
@@ -10,6 +11,7 @@ class App extends Component {
           <h1 className="App-title">Oh, the places you've been</h1>
           <h4><i>Reflection Board</i></h4>
         </header>
+        <Nav />
         <br/>
       </div>
     );
