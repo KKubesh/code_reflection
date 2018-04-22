@@ -27,7 +27,18 @@ class New extends Component {
               }
           });
         }
-      }
+    }
+
+    addNewReflection = event => {
+        event.preventDefault();
+        this.props.dispatch({ type: 'ADD_REFLECTION', payload: this.state.newReflection })
+        this.setState({
+            newPlant: {
+                id: this.state.newReflection.id + 1,
+                name: '',
+            }
+        });
+    }
 
     render() {
         return (

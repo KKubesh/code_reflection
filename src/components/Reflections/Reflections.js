@@ -1,16 +1,41 @@
 import React, { Component } from 'react';
+import axios from 'axios';
+import ReflectionItem from '../ReflectionItem/ReflectionItem'
 
 // users list of different reflections should go here
 class Reflections extends Component {
-    componentDidMount() {
-        this.props.dispatch({
-            type: 'FETCH_REFLECTIONS'
+    state = {
+        reflectionList: []
+    }
+
+    getReflection(){
+        axios.get('/reflection').then((response) => {
+            console.log(response.data);  
+          this.setState({
+            reflectionList: response.data
+          })
+        }).catch((err) => {
+          console.log('error on get', err);
         })
     }
 
+    componentDidMount() {
+        this.getReflection();
+    }
+
     render() {
+        console.log(this.state.reflectionList);
+        
+        let reflections = this.state.reflectionList.map(item => {
+            return (
+                <ReflectionItem key={item.id} item={item}/>
+            )
+        })
+
         return (
-            <h1>All Reflection</h1>
+            <div>
+                {reflections}
+            </div>
         )
     }
 }
