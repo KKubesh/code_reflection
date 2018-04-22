@@ -5,7 +5,7 @@ class ReflectionItem extends Component {
     bookmark(item) {
         // console.log(item.item.bookmarked);
         item.item.bookmarked = !item.item.bookmarked
-        axios.put(`/reflection`, item).then((response) => {
+        axios.put(`/reflection?id=`+ item.item.id, item.item).then((response) => {
             console.log('Put reponse', response);   
         }).catch((err) => {
             console.log('error in put', err);
