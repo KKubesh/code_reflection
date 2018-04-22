@@ -13,8 +13,6 @@ class New extends Component {
         // sending values via reflection
         axios.post('/reflection', newReflection).then((response) => {
           console.log('Post response', response);
-          //get reflections to repopulate reflections page
-          this.getReflection();
         }).catch((err) => {
           console.log(err);
         })
