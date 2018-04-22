@@ -9,29 +9,7 @@ import {
 } from 'redux'
 import logger from 'redux-logger';
 import { Provider } from 'react-redux';
-// import createSagaMiddleware from 'redux-saga';
-// import {
-//     takeEvery,
-//     call,
-//     put
-// } from 'redux-saga/effects';
-// import axios from 'axios';
 
-// --- Sagas ---
-// const sagaMiddleware = createSagaMiddleware();
-
-// function* rootSage () {
-//     yield takeEvery('GET_REFLECTIONS', )
-// }
-
-// const reflectionList = (state = [], action) => {
-//     switch (action.type) {
-//       case 'GET_REFLECTIONS':
-//         return action.payload
-//       default:
-//         return state;
-//     }
-// };
 
 const store = createStore(
     applyMiddleware(logger)

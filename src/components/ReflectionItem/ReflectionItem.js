@@ -6,7 +6,8 @@ class ReflectionItem extends Component {
         // console.log(item.item.bookmarked);
         item.item.bookmarked = !item.item.bookmarked
         axios.put(`/reflection?id=`+ item.item.id, item.item).then((response) => {
-            console.log('Put reponse', response);   
+            console.log('Put reponse', response);  
+            this.props.getReflection(); 
         }).catch((err) => {
             console.log('error in put', err);
         })
@@ -42,7 +43,7 @@ class ReflectionItem extends Component {
     render() {
         return (
             <div>
-                <p>{this.props.item.topic} {this.props.item.description} {this.props.item.date}</p>
+                <p>{this.props.item.topic} {this.props.item.description} {this.props.item.date} </p>
                 <button onClick={this.handleBookmark}>bookmark</button>
                 <button onClick={this.handleDelete}>delete</button>
             </div>
