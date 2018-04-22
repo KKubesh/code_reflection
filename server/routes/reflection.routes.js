@@ -12,7 +12,7 @@ router.get('/', (req, res) => {
         console.log('error in select menu items:', error);
         res.sendStatus(500);
     });
-}); // end GET menu
+}); // end GET reflection
 
 // POST Route
 router.post('/', (req, res) => {
@@ -26,9 +26,38 @@ router.post('/', (req, res) => {
     pool.query(queryText, queryValues)
       .then(() => { res.sendStatus(201); })
       .catch((err) => {
-        console.log('Error completing SELECT plant query', err);
+        console.log('Error completing SELECT reflection query', err);
         res.sendStatus(500);
       });
-  });
+  }); // end POST reflection
+
+  // PUT route
+  router.put('/', (req,res) => {
+      const bookmarkItem = req.body;
+      console.log(bookmarkItem);
+      const queryText = `UPDATE reflection SET "bookmarked" = $1 WHERE id=$2`;
+      const queryValues = [
+        bookmarkItem.bookmarked,
+        bookmarkItem.id
+      ];
+      pool.query(queryText, queryValues)
+      .then(() => { res.sendStatus(201);
+      }).catch((err) => {
+          console.log('Error completing PUT reflection query', err);
+          res.sendStatus(500);
+      });
+  }) // end of PUT route
+
+  router.delete('/', (req,res) => {
+    console.log(req.query.id);
+    
+    const queryText = 'DELETE FROM reflection WHERE id=$1';
+    pool.query(queryText, [req.query.id])
+      .then(() => { res.sendStatus(200); })
+      .catch((err) => {
+        console.log('Error completing DELETE reflection query', err);
+        res.sendStatus(500);
+      });
+  })
 
 module.exports = router;

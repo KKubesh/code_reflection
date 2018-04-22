@@ -10,7 +10,6 @@ class Reflections extends Component {
 
     getReflection(){
         axios.get('/reflection').then((response) => {
-            console.log(response.data);  
           this.setState({
             reflectionList: response.data
           })
@@ -24,11 +23,10 @@ class Reflections extends Component {
     }
 
     render() {
-        console.log(this.state.reflectionList);
         
         let reflections = this.state.reflectionList.map(item => {
             return (
-                <ReflectionItem key={item.id} item={item}/>
+                <ReflectionItem key={item.id} item={item} getReflection={this.getReflection} reflectionList={this.state.reflectionList}/>
             )
         })
 
