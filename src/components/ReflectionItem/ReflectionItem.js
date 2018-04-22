@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import moment from 'moment';
+import ToggleDisplay from 'react-toggle-display';
+import { Bookmark, BookmarkBorder, Delete  } from 'material-ui-icons';
+
 
 class ReflectionItem extends Component {    
     bookmark(item) {
@@ -41,14 +45,26 @@ class ReflectionItem extends Component {
     }
 
     render() {
+        let time = moment(`${this.props.item.date}`).format(`dddd, MMMM Do YYYY`);
         return (
             <div>
-                <p>{this.props.item.topic} {this.props.item.description} {this.props.item.date} </p>
-                <button onClick={this.handleBookmark}>bookmark</button>
-                <button onClick={this.handleDelete}>delete</button>
+                <p>{this.props.item.topic} {this.props.item.description} {time} </p>
+                <div>
+                    <ToggleDisplay show={this.props.item.bookmarked}>
+                        <Bookmark onClick={this.handleBookmark}/>                   
+                    </ToggleDisplay>
+                </div>
+                <div>
+                    <ToggleDisplay hide={this.props.item.bookmarked}>
+                        <BookmarkBorder onClick={this.handleBookmark}/>                   
+                    </ToggleDisplay>
+                </div>
+                {/* <ToggleButton item={this.props.item} /> */}
+                
+                <Delete onClick={this.handleDelete}/>
             </div>
         )
     }
 }
 
-export default ReflectionItem
+export default ReflectionItem;
