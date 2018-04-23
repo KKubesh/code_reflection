@@ -10,8 +10,6 @@ class Reflections extends Component {
 
     getReflection = () => {        
         axios.get('/reflection').then((response) => {
-        console.log(response.data);
-            
           this.setState({
             reflectionList: response.data
           })

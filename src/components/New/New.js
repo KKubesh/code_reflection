@@ -42,10 +42,17 @@ class New extends Component {
             <div>
                 <form onSubmit={this.handleSubmit}>
                     <h1>New Reflection</h1>
-                    Topic:
-                    <input onChange={this.handleChangeFor('topic')} type='text' placeholder='What are you writing about?'/>
-                    Reflection:
-                    <input onChange={this.handleChangeFor('description')} type='text' placeholder='Your reflections here'/>
+                    <div>
+                        Topic:
+                        <br/>
+                        <input onChange={this.handleChangeFor('topic')} type='text' placeholder='Topic Here'/>
+                    </div>
+                    <div>
+                        <p>Reflection:
+                        <br/>
+                        <textarea cols="50" rows="5" onChange={this.handleChangeFor('description')} type='text' placeholder='Your reflection here'/>
+                        </p>
+                    </div>
                     <input type="submit" value="Submit" />
                 </form>
             </div>

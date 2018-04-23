@@ -3,6 +3,9 @@ import axios from 'axios';
 import moment from 'moment';
 import ToggleDisplay from 'react-toggle-display';
 import { Bookmark, BookmarkBorder, Delete  } from 'material-ui-icons';
+import {Card, CardTitle, CardText} from 'material-ui/Card';
+import './ReflectionItem.css'
+
 
 
 class ReflectionItem extends Component {    
@@ -47,8 +50,9 @@ class ReflectionItem extends Component {
     render() {
         let time = moment(`${this.props.item.date}`).format(`dddd, MMMM Do YYYY`);
         return (
-            <div>
-                <p>{this.props.item.topic} {this.props.item.description} {time} </p>
+            <Card className="cardWidth">
+                <CardTitle title={this.props.item.topic} subtitle={time} />
+                <CardText> {this.props.item.description} </CardText>
                 <div>
                     <ToggleDisplay show={this.props.item.bookmarked}>
                         <Bookmark onClick={this.handleBookmark}/>                   
@@ -59,10 +63,8 @@ class ReflectionItem extends Component {
                         <BookmarkBorder onClick={this.handleBookmark}/>                   
                     </ToggleDisplay>
                 </div>
-                {/* <ToggleButton item={this.props.item} /> */}
-                
                 <Delete onClick={this.handleDelete}/>
-            </div>
+            </Card>
         )
     }
 }
